@@ -1,6 +1,7 @@
 package com.springboot2.htservice.web.dto;
 
-import com.springboot2.htservice.domain.post.Board;
+import com.springboot2.htservice.domain.board.Board;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ public class BoardSaveRequestDto {
     private String content;
     private String author;
 
+    @Builder
     public BoardSaveRequestDto(String title, String content, String author) {
         this.title = title;
         this.content = content;

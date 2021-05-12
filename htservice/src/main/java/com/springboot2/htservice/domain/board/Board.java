@@ -1,7 +1,6 @@
-package com.springboot2.htservice.domain.post;
+package com.springboot2.htservice.domain.board;
 
 import com.springboot2.htservice.domain.BaseTimeEntity;
-import com.springboot2.htservice.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

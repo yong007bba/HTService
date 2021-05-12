@@ -1,7 +1,5 @@
-package com.springboot2.htservice.domain.Post;
+package com.springboot2.htservice.domain.board;
 
-import com.springboot2.htservice.domain.post.Board;
-import com.springboot2.htservice.domain.post.BoardRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -48,6 +46,7 @@ public class BoardRepositoryTest {
         assertThat(board.getAuthor()).isEqualTo("Test@gmail.com");
         assertThat(board.getViewCount()).isEqualTo(0L);
     }
+
 
     @Test
     public void registBaseTimeEntity() {

@@ -22,21 +22,31 @@ public class User {
     @Column(nullable = false, name = "U_EMAIL")
     private String email;
 
-    @Column(name = "U_GENDER")
-    private Gender gender;
+    @Column
+    private String picture;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role; // trainer, user, admin
+
 
     @Builder
-    public User(Long id, String name, String email, Gender gender) {
-        this.id = id;
+    public User(String name, String email, String picture, Role role) {
         this.name = name;
         this.email = email;
-        this.gender = gender;
+        this.picture = picture;
+        this.role = role;
     }
 
 
-    public User update(String name){
+    public User update(String name, String picture) {
         this.name = name;
+        this.picture = picture;
 
         return this;
+    }
+
+    public String getRoleKey() {
+        return this.role.getKey();
     }
 }

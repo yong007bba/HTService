@@ -1,51 +1,47 @@
 {{>layout/header}}
+<head><link rel="stylesheet" href="css/board_css.css"></head>
 
-<h1>스프링부트로 시작하는 웹 서비스 Ver.2 게시판</h1>
-<div class="col-md-12">
-    <div class="row">
-        <div class="col-md-6">
-            <a href="/board/save" role="button" class="btn btn-primary">글 등록</a>
-            {{#userName}}
-                Logged in as: <span id="user">{{userName}}</span>
-                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
-            {{/userName}}
-            {{^userName}}
-                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
-                <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
-            {{/userName}}
+<div class="board_wrap">
+    <div class="board_title">
+        <strong>게시판</strong>
+    </div>
+    <div class="board_list_wrap">
+        <table class="table table-horizontal table-bordered">
+            <thead class="thead-strong">
+            <tr>
+                <th class="num">번호</th>
+                <th class="title">제목</th>
+                <th class="author">작성자</th>
+                <th class="date">작성일</th>
+                <th class="count">조회</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            {{#board}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td><a href="/board/{{id}}">{{title}}</a></td>
+                    <td>{{author}}</td>
+                    <td>{{createdDate}}</td>
+                    <td>{{viewCount}}</td>
+                </tr>
+            {{/board}}
+            </tbody>
+        </table>
+        <ul class="pagination justify-content-center">
+            <li class="page-item"><a class="page-link" href="?page={{prev}}">이전</a></li>
+            {{#check}}
+                <li class="page-item"><a class="page-link" href="?page={{next}}">다음</a></li>
+            {{/check}}
+            {{^check}}
+                <li class="page-item disabled"><a class="page-link" href="?page={{next}}">다음</a></li>
+            {{/check}}
+        </ul>
+        <div class="btn_wrap">
+            <a href="/board/save">글쓰기</a>
         </div>
     </div>
-    <br>
-    <!-- 목록 출력 영역 -->
-    <table class="table table-horizontal table-bordered">
-        <thead class="thead-strong">
-        <tr>
-            <th>번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>등록일</th>
-        </tr>
-        </thead>
-        <tbody id="tbody">
-        {{#board}}
-            <tr>
-                <td>{{id}}</td>
-                <td><a href="/board/{{id}}">{{title}}</a></td>
-                <td>{{author}}</td>
-                <td>{{modifiedDate}}</td>
-            </tr>
-        {{/board}}
-        </tbody>
-    </table>
-    <ul class="pagenation justify-content-center">
-        <li class="page-item"><a class="page-link" href="?page={{prev}}">이전</a></li>
-        {{#check}}
-            <li class="page-item"><a class="page-link" href="?page={{next}}">다음</a></li>
-        {{/check}}
-        {{^check}}
-            <li class="page-item disabled"><a class="page-link" href="?page={{next}}">다음</a></li>
-        {{/check}}
-    </ul>
 </div>
 
+<script src="js/app/boardList.js"></script>
 {{>layout/footer}}

@@ -7,6 +7,8 @@ import com.springboot2.htservice.web.dto.BoardResponseDto;
 import com.springboot2.htservice.web.dto.BoardSaveRequestDto;
 import com.springboot2.htservice.web.dto.BoardUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -56,8 +58,19 @@ public class BoardService {
     }
 
     @Transactional
-    public int updateView (Long id) {
-        return boardRepository.updateView(id);
+    public void updateView (Long id) {
+        boardRepository.updateView(id);
     }
+
+    @Transactional
+    public Page<Board> getBoardList(Pageable pageable){
+        return boardRepository.findAll(pageable);
+     }
+
+     @Transactional
+    public boolean getListCheck(Pageable pageable){
+        Page<Board> saved = getBoardList(pageable);
+         return saved.hasNext();
+     }
 
 }

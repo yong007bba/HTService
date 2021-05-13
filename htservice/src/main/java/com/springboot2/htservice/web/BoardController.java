@@ -22,6 +22,7 @@ public class BoardController {
     public String boardSave() {
         return "board-save";
     }
+
     @GetMapping("/board/{id}") //@pathVariable: 경로의 특정위치값이 고정되지 않고 달라질때 사용함
     public String boardDetail(@PathVariable Long id, Model model) {
         boardService.updateView(id);

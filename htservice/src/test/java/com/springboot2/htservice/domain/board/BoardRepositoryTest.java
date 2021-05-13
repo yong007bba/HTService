@@ -41,6 +41,8 @@ public class BoardRepositoryTest {
 
         //then
         Board board = boardList.get(0);
+        System.out.println("board.getCreatedDate() = " + board.getCreatedDate());
+        System.out.println("board.getModifiedDate() = " + board.getModifiedDate());
         assertThat(board.getTitle()).isEqualTo(title);
         assertThat(board.getContent()).isEqualTo(content);
         assertThat(board.getAuthor()).isEqualTo("Test@gmail.com");
